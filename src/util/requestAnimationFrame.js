@@ -5,8 +5,10 @@ let cancel = 'clearTimeout'
 let raf    = fallback
 let compatRaf
 
-let getKey = (vendor, k) =>
-  vendor + (!vendor  ? k :(k[0].toUpperCase() + k.substr(1))) + 'AnimationFrame'
+let getKey = (vendor, k) => {
+    var str = typeof k == 'string' ? k.charAt(0) : k[0];
+    return vendor + (!vendor ? k : (str.toUpperCase() + k.substr(1))) + 'AnimationFrame'
+}
 
 if (canUseDOM) {
   vendors.some(vendor => {
